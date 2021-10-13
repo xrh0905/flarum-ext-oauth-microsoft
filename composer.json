@@ -1,0 +1,41 @@
+{
+    "name": "ianm/oauth-amazon",
+    "description": "Log in to your Flarum forum with Amazon",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/imorland/flarum-ext-oauth-amazon/issues",
+        "source": "https://github.com/imorland/flarum-ext-oauth-amazon",
+        "forum": "https://discuss.flarum.org/d/XXXX"
+    },
+    "require": {
+        "flarum/core": "^1.0.0",
+        "fof/oauth": "^1.1.0",
+        "luchianenco/oauth2-amazon": "^2.0"
+    },
+    "authors": [
+        {
+            "name": "IanM",
+            "homepage": "https://discuss.flarum.org/u/ianm"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IanM\\OAuthAmazon\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Log In With Amazon",
+            "category": "feature",
+            "icon": {
+                "name": "fab fa-amazon",
+                "backgroundColor": "#0072e3",
+                "color": "#fff"
+            }
+        }
+    }
+}
