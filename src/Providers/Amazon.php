@@ -5,8 +5,8 @@
  *
  * Copyright (c) 2021 IanM.
  *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
+ *  For the full copyright and license information, please view the LICENSE.md
+ *  file that was distributed with this source code.
  */
 
 namespace IanM\OAuthAmazon\Providers;
@@ -46,7 +46,7 @@ class Amazon extends Provider
         return $this->provider = new AmazonProvider([
             'clientId'     => $this->getSetting('client_id'),
             'clientSecret' => $this->getSetting('client_secret'),
-            'redirectUri'  => $redirectUri
+            'redirectUri'  => $redirectUri,
         ]);
     }
 
