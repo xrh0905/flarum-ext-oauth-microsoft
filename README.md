@@ -26,5 +26,5 @@ composer update ianm/oauth-amazon
 ## Links
 
 - [Packagist](https://packagist.org/packages/ianm/oauth-amazon)
-- [GitHub](https://github.com/ianm/oauth-amazon)
+- [GitHub](https://github.com/imorland/flarum-ext-oauth-amazon)
 - [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
