@@ -2,7 +2,7 @@
     "name": "ianm/oauth-amazon",
     "description": "Log in to your Flarum forum with Amazon",
     "keywords": [
-        "flarum"
+        "flarum", "amazon", "sso", "oauth", "login"
     ],
     "type": "flarum-extension",
     "license": "MIT",
