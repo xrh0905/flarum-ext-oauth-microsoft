@@ -15,6 +15,7 @@ use Flarum\Forum\Auth\Registration;
 use FoF\OAuth\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use Luchianenco\OAuth2\Client\Provider\Amazon as AmazonProvider;
+use Luchianenco\OAuth2\Client\Provider\AmazonResourceOwner;
 
 class Amazon extends Provider
 {
@@ -52,6 +53,7 @@ class Amazon extends Provider
 
     public function suggestions(Registration $registration, $user, string $token)
     {
+        /** @var AmazonResourceOwner $user */
         $this->verifyEmail($email = $user->getEmail());
 
         $registration

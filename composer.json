@@ -13,7 +13,7 @@
     },
     "require": {
         "flarum/core": "^1.2.0",
-        "fof/oauth": "^1.1.0",
+        "fof/oauth": "^1.3.0",
         "luchianenco/oauth2-amazon": "^2.0"
     },
     "authors": [

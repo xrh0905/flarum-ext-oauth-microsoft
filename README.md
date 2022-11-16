@@ -2,14 +2,16 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/ianm/oauth-amazon.svg)](https://packagist.org/packages/ianm/oauth-amazon) [![Total Downloads](https://img.shields.io/packagist/dt/ianm/oauth-amazon.svg)](https://packagist.org/packages/ianm/oauth-amazon)
 
-A [Flarum](http://flarum.org) extension. Log in to your Flarum forum with Amazon. An addon for [FoF OAuth](https://github.com/friendsofflarum/oauth)
+![](https://extiverse.com/extension/ianm/oauth-amazon/open-graph-image)
+
+Log in to your Flarum forum with Amazon. An addon for [FoF OAuth](https://github.com/friendsofflarum/oauth)
 
 ## Installation
 
 Install with composer:
 
 ```sh
-composer require ianm/oauth-amazon:"*"
+composer require ianm/oauth-amazon
 ```
 
 ## Updating
