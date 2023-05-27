@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ianm/oauth-amazon.
+ * This file is based on ianm/oauth-amazon.
  *
  * Copyright (c) 2021 IanM.
  *
@@ -9,11 +9,11 @@
  *  file that was distributed with this source code.
  */
 
-namespace IanM\OAuthAmazon;
+namespace xrh0905\OAuthMicrosoft;
 
 use Flarum\Extend;
 use FoF\OAuth\Extend as OAuthExtend;
-use IanM\OAuthAmazon\Providers\Amazon;
+use xrh0905\OAuthMicrosoft\Providers\Microsoft;
 
 return [
     (new Extend\Frontend('forum'))
@@ -24,5 +24,5 @@ return [
 
     new Extend\Locales(__DIR__.'/locale'),
 
-    (new OAuthExtend\RegisterProvider(Amazon::class)),
+    (new OAuthExtend\RegisterProvider(Microsoft::class)),
 ];

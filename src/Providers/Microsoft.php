@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ianm/oauth-amazon.
+ * This file is based on ianm/oauth-amazon.
  *
  * Copyright (c) 2021 IanM.
  *
@@ -9,29 +9,29 @@
  *  file that was distributed with this source code.
  */
 
-namespace IanM\OAuthAmazon\Providers;
+namespace xrh0905\OAuthMicrosoft\Providers;
 
 use Flarum\Forum\Auth\Registration;
 use FoF\OAuth\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use Luchianenco\OAuth2\Client\Provider\Amazon as AmazonProvider;
-use Luchianenco\OAuth2\Client\Provider\AmazonResourceOwner;
+use Stevenmaguire\OAuth2\Client\Provider\Microsoft as MicrosoftProvider;
+use Stevenmaguire\OAuth2\Client\Provider\MicrosoftResourceOwner;
 
-class Amazon extends Provider
+class Microsoft extends Provider
 {
     /**
-     * @var AmazonProvider
+     * @var MicrosoftProvider
      */
     protected $provider;
 
     public function name(): string
     {
-        return 'amazon';
+        return 'microsoft';
     }
 
     public function link(): string
     {
-        return 'https://developer.amazon.com/docs/login-with-amazon/register-web.html';
+        return 'https://learn.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow';
     }
 
     public function fields(): array
@@ -44,7 +44,7 @@ class Amazon extends Provider
 
     public function provider(string $redirectUri): AbstractProvider
     {
-        return $this->provider = new AmazonProvider([
+        return $this->provider = new MicrosoftProvider([
             'clientId'     => $this->getSetting('client_id'),
             'clientSecret' => $this->getSetting('client_secret'),
             'redirectUri'  => $redirectUri,
@@ -53,7 +53,7 @@ class Amazon extends Provider
 
     public function suggestions(Registration $registration, $user, string $token)
     {
-        /** @var AmazonResourceOwner $user */
+        /** @var MicrosoftResourceOwner $user */
         $this->verifyEmail($email = $user->getEmail());
 
         $registration

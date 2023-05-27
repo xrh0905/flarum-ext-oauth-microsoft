@@ -1,38 +1,38 @@
 {
-    "name": "ianm/oauth-amazon",
-    "description": "Log in to your Flarum forum with Amazon",
+    "name": "xrh0905/oauth-microsoft",
+    "description": "Log in to your Flarum forum with Microsoft",
     "keywords": [
-        "flarum", "amazon", "sso", "oauth", "login"
+        "flarum", "microsoft", "sso", "oauth", "login"
     ],
     "type": "flarum-extension",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/imorland/flarum-ext-oauth-amazon/issues",
-        "source": "https://github.com/imorland/flarum-ext-oauth-amazon",
-        "forum": "https://discuss.flarum.org/d/29191"
+        "issues": "https://github.com/xrh0905/flarum-ext-oauth-microsoft/issues",
+        "source": "https://github.com/xrh0905/flarum-ext-oauth-microsoft",
+        "forum": ""
     },
     "require": {
         "flarum/core": "^1.2.0",
         "fof/oauth": "^1.3.0",
-        "luchianenco/oauth2-amazon": "^2.0"
+        "stevenmaguire/oauth2-microsoft": "^2.2"
     },
     "authors": [
         {
-            "name": "IanM",
-            "homepage": "https://discuss.flarum.org/u/ianm"
+            "name": "xrh0905",
+            "homepage": "https://github.com/xrh0905"
         }
     ],
     "autoload": {
         "psr-4": {
-            "IanM\\OAuthAmazon\\": "src/"
+            "xrh0905\\OAuthMicrosoft\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
-            "title": "Log In With Amazon",
+            "title": "Log In With Microsoft",
             "category": "feature",
             "icon": {
-                "name": "fab fa-amazon",
+                "name": "fab fa-microsoft",
                 "backgroundColor": "#0072e3",
                 "color": "#fff"
             }
