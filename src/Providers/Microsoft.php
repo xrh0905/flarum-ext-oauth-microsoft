@@ -11,6 +11,7 @@
 
 namespace xrh0905\OAuthMicrosoft\Providers;
 
+use Flarum\Extend\Console;
 use Flarum\Forum\Auth\Registration;
 use FoF\OAuth\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
@@ -58,6 +59,7 @@ class Microsoft extends Provider
 
         $registration
             ->provideTrustedEmail($email)
+            ->suggestUsername(str_replace(' ', '', trim($user->getName())))
             ->setPayload($user->toArray());
     }
 }

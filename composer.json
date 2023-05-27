@@ -9,7 +9,7 @@
     "support": {
         "issues": "https://github.com/xrh0905/flarum-ext-oauth-microsoft/issues",
         "source": "https://github.com/xrh0905/flarum-ext-oauth-microsoft",
-        "forum": ""
+        "forum": "https://example.com"
     },
     "require": {
         "flarum/core": "^1.2.0",
