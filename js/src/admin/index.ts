@@ -1,6 +1,6 @@
 import app from 'flarum/admin/app';
 import { ConfigureWithOAuthPage } from '@fof-oauth';
 
-app.initializers.add('ianm/oauth-microsoft', () => {
-  app.extensionData.for('ianm-oauth-microsoft').registerPage(ConfigureWithOAuthPage);
+app.initializers.add('xrh0905/oauth-microsoft', () => {
+  app.extensionData.for('xrh0905-oauth-microsoft').registerPage(ConfigureWithOAuthPage);
 });
