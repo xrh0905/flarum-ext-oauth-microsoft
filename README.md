@@ -1,4 +1,4 @@
-# Log In With Amazon
+# Log In With Microsoft
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/xrh0905/oauth-microsoft.svg)](https://packagist.org/packages/xrh0905/oauth-microsoft) [![Total Downloads](https://img.shields.io/packagist/dt/xrh0905/oauth-microsoft.svg)](https://packagist.org/packages/xrh0905/oauth-microsoft)
 
@@ -29,4 +29,4 @@ composer update xrh0905/oauth-microsoft
 
 - [Packagist](https://packagist.org/packages/xrh0905/oauth-microsoft)
 - [GitHub](https://github.com/xrh0905/flarum-ext-oauth-microsoft)
-- [Discuss]()
+- [Discuss](https://github.com/xrh0905/flarum-ext-oauth-microsoft/issues)
