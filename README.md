@@ -8,6 +8,8 @@ Log in to your Flarum forum with Microsoft. An addon for [FoF OAuth](https://git
 
 Supports personal Microsoft accounts (Outlook, Hotmail, Live) as well as work and school accounts via [Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/) (Azure Active Directory).
 
+See also: https://learn.microsoft.com/zh-cn/entra/identity-platform/v2-protocols-oidc
+
 ## Installation
 
 Install with composer:
@@ -43,7 +45,12 @@ php flarum cache:clear
 3. Enter a description and choose an expiry, then click **Add**.
 4. Copy the **Value** immediately (it is only shown once) — this is your `Client Secret`.
 
-### 3. Configure the Extension
+### 3. Configure the permissions
+
+1. On application's **Authenication** → **Settings** page, make sure to tick `ID tokens (used for implicit and hybrid flows)` checkbox.
+2. On application's **API Permissions** page, grant `openid profile email` under **Graph API** in **Delegated** mode.
+
+### 4. Configure the Extension
 
 In your Flarum Admin panel, go to **Extensions → Log In With Microsoft** and enter the `Client ID` and `Client Secret` obtained above. If you want to restrict sign-in to a specific audience, also set the **Tenant** field (see below).
 
@@ -51,7 +58,7 @@ In your Flarum Admin panel, go to **Extensions → Log In With Microsoft** and e
 
 ## Choosing a Tenant
 
-The **Tenant** field controls which Microsoft accounts are allowed to sign in. Leave it blank to accept all account types.
+The **Tenant** field controls which Microsoft accounts are allowed to sign in. It needs to match the settings in **Supported account types**.
 
 | Value | Who can sign in |
 |---|---|
