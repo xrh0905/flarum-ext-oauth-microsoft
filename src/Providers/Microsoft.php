@@ -49,9 +49,8 @@ class Microsoft extends Provider
             'clientSecret'           => $this->getSetting('client_secret'),
             'redirectUri'            => $redirectUri,
             'defaultEndPointVersion' => Azure::ENDPOINT_VERSION_2_0,
+            'scopes'                 => ['openid', 'profile', 'email'],
         ]);
-
-        $provider->scope = 'openid profile email';
 
         return $this->provider = $provider;
     }
