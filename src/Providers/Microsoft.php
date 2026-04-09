@@ -51,7 +51,7 @@ class Microsoft extends Provider
             'defaultEndPointVersion' => Azure::ENDPOINT_VERSION_2_0,
         ]);
 
-        $provider->scope = 'openid profile email User.Read';
+        $provider->scope = 'openid profile email';
 
         return $this->provider = $provider;
     }
@@ -59,21 +59,12 @@ class Microsoft extends Provider
     public function suggestions(Registration $registration, $user, string $token)
     {
         /** @var AzureResourceOwner $user */
-        $email = $user->getEmail() ?? $user->getUpn() ?? $user->getPreferredUsername();
+        $email = $user->getEmail();
         $this->verifyEmail($email);
-
-        $firstName = $user->getFirstName() ?? '';
-        $lastName  = $user->getLastName() ?? '';
-        $username  = trim($firstName . ' ' . $lastName);
-
-        if (empty($username)) {
-            // $email is guaranteed non-null here because verifyEmail() above throws if it is null/empty
-            $username = $user->getPreferredUsername() ?? $user->getUpn() ?? (string) $email;
-        }
 
         $registration
             ->provideTrustedEmail($email)
-            ->suggestUsername(str_replace(' ', '', trim($username)))
+            ->suggestUsername($user->getPreferredUsername())
             ->setPayload($user->toArray());
     }
 }
