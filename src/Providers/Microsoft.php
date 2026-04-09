@@ -11,17 +11,16 @@
 
 namespace xrh0905\OAuthMicrosoft\Providers;
 
-use Flarum\Extend\Console;
 use Flarum\Forum\Auth\Registration;
 use FoF\OAuth\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use Stevenmaguire\OAuth2\Client\Provider\Microsoft as MicrosoftProvider;
-use Stevenmaguire\OAuth2\Client\Provider\MicrosoftResourceOwner;
+use TheNetworg\OAuth2\Client\Provider\Azure;
+use TheNetworg\OAuth2\Client\Provider\AzureResourceOwner;
 
 class Microsoft extends Provider
 {
     /**
-     * @var MicrosoftProvider
+     * @var Azure
      */
     protected $provider;
 
@@ -40,26 +39,40 @@ class Microsoft extends Provider
         return [
             'client_id'     => 'required',
             'client_secret' => 'required',
+            'tenant'        => 'nullable',
         ];
     }
 
     public function provider(string $redirectUri): AbstractProvider
     {
-        return $this->provider = new MicrosoftProvider([
-            'clientId'     => $this->getSetting('client_id'),
-            'clientSecret' => $this->getSetting('client_secret'),
-            'redirectUri'  => $redirectUri,
+        $provider = new Azure([
+            'clientId'               => $this->getSetting('client_id'),
+            'clientSecret'           => $this->getSetting('client_secret'),
+            'redirectUri'            => $redirectUri,
+            'defaultEndPointVersion' => Azure::ENDPOINT_VERSION_2_0,
+            'scopes'                 => ['openid', 'profile', 'email'],
+            'tenant'                 => $this->getSetting('tenant') ?: 'common',
         ]);
+
+        return $this->provider = $provider;
     }
 
     public function suggestions(Registration $registration, $user, string $token)
     {
-        /** @var MicrosoftResourceOwner $user */
-        $this->verifyEmail($email = $user->getEmail());
+        /** @var AzureResourceOwner $user */
+        $email = $user->getEmail();
+        $this->verifyEmail($email);
+
+        // preferred_username is a UPN (e.g. john.doe@contoso.com); strip the domain
+        // so that Flarum receives a plain username without the @ sign.
+        $preferredUsername = $user->getPreferredUsername();
+        $username = $preferredUsername
+            ? (strstr($preferredUsername, '@', true) ?: $preferredUsername)
+            : $user->claim('name');
 
         $registration
             ->provideTrustedEmail($email)
-            ->suggestUsername(str_replace(' ', '', trim($user->getName())))
+            ->suggestUsername($username)
             ->setPayload($user->toArray());
     }
 }

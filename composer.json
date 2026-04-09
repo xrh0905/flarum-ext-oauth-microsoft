@@ -9,12 +9,12 @@
     "support": {
         "issues": "https://github.com/xrh0905/flarum-ext-oauth-microsoft/issues",
         "source": "https://github.com/xrh0905/flarum-ext-oauth-microsoft",
-        "forum": "https://example.com"
+        "forum": "https://github.com/xrh0905/flarum-ext-oauth-microsoft/discussions"
     },
     "require": {
         "flarum/core": "^1.2.0",
         "fof/oauth": "^1.3.0",
-        "stevenmaguire/oauth2-microsoft": "^2.2"
+        "thenetworg/oauth2-azure": "^2.2"
     },
     "authors": [
         {
