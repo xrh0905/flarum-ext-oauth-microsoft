@@ -11,17 +11,16 @@
 
 namespace xrh0905\OAuthMicrosoft\Providers;
 
-use Flarum\Extend\Console;
 use Flarum\Forum\Auth\Registration;
 use FoF\OAuth\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use Stevenmaguire\OAuth2\Client\Provider\Microsoft as MicrosoftProvider;
-use Stevenmaguire\OAuth2\Client\Provider\MicrosoftResourceOwner;
+use TheNetworg\OAuth2\Client\Provider\Azure;
+use TheNetworg\OAuth2\Client\Provider\AzureResourceOwner;
 
 class Microsoft extends Provider
 {
     /**
-     * @var MicrosoftProvider
+     * @var Azure
      */
     protected $provider;
 
@@ -45,21 +44,36 @@ class Microsoft extends Provider
 
     public function provider(string $redirectUri): AbstractProvider
     {
-        return $this->provider = new MicrosoftProvider([
-            'clientId'     => $this->getSetting('client_id'),
-            'clientSecret' => $this->getSetting('client_secret'),
-            'redirectUri'  => $redirectUri,
+        $provider = new Azure([
+            'clientId'               => $this->getSetting('client_id'),
+            'clientSecret'           => $this->getSetting('client_secret'),
+            'redirectUri'            => $redirectUri,
+            'defaultEndPointVersion' => Azure::ENDPOINT_VERSION_2_0,
         ]);
+
+        $provider->scope = 'openid profile email User.Read';
+
+        return $this->provider = $provider;
     }
 
     public function suggestions(Registration $registration, $user, string $token)
     {
-        /** @var MicrosoftResourceOwner $user */
-        $this->verifyEmail($email = $user->getEmail());
+        /** @var AzureResourceOwner $user */
+        $email = $user->getEmail() ?? $user->getUpn() ?? $user->getPreferredUsername();
+        $this->verifyEmail($email);
+
+        $firstName = $user->getFirstName() ?? '';
+        $lastName  = $user->getLastName() ?? '';
+        $username  = trim($firstName . ' ' . $lastName);
+
+        if (empty($username)) {
+            // $email is guaranteed non-null here because verifyEmail() above throws if it is null/empty
+            $username = $user->getPreferredUsername() ?? $user->getUpn() ?? (string) $email;
+        }
 
         $registration
             ->provideTrustedEmail($email)
-            ->suggestUsername(str_replace(' ', '', trim($user->getName())))
+            ->suggestUsername(str_replace(' ', '', trim($username)))
             ->setPayload($user->toArray());
     }
 }
