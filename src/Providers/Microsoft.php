@@ -39,6 +39,7 @@ class Microsoft extends Provider
         return [
             'client_id'     => 'required',
             'client_secret' => 'required',
+            'tenant'        => 'nullable',
         ];
     }
 
@@ -50,6 +51,7 @@ class Microsoft extends Provider
             'redirectUri'            => $redirectUri,
             'defaultEndPointVersion' => Azure::ENDPOINT_VERSION_2_0,
             'scopes'                 => ['openid', 'profile', 'email'],
+            'tenant'                 => $this->getSetting('tenant') ?: 'common',
         ]);
 
         return $this->provider = $provider;
