@@ -63,9 +63,16 @@ class Microsoft extends Provider
         $email = $user->getEmail();
         $this->verifyEmail($email);
 
+        // preferred_username is a UPN (e.g. john.doe@contoso.com); strip the domain
+        // so that Flarum receives a plain username without the @ sign.
+        $preferredUsername = $user->getPreferredUsername();
+        $username = $preferredUsername
+            ? (strstr($preferredUsername, '@', true) ?: $preferredUsername)
+            : $user->claim('name');
+
         $registration
             ->provideTrustedEmail($email)
-            ->suggestUsername($user->getPreferredUsername())
+            ->suggestUsername($username)
             ->setPayload($user->toArray());
     }
 }
